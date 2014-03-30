@@ -1,1 +1,2 @@
-pandoc --template=template.tex --latex-engine=xelatex iot.md -o iot.pdf  --highlight-style=tango --table-of-contents
+pandoc iot.md -o iot.docx --toc --smart --highlight-style=tango
+pandoc --template=template.tex --latex-engine=xelatex iot.md -o iot.pdf  --toc --smart --highlight-style=tango
