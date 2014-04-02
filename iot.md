@@ -63,7 +63,9 @@ PI开发板相连来获取实时状态。Raspberry PI作为一个ARM开发板，
 Arduino+Raspberry Pi+Laravel+JSON+RESTful+Ajax+Python+HighCharts
 
 Arduino与Raspberry Pi通过串口通信的方式实现通信，相互传输所需要的数据， Raspberry Pi将资源传于互联网上对应的接口，接口可以在互联网上被访问。 Laravel框架构架于服务器之上，将Raspbery Pi获取过来的数据存储于MySQL数 据，再以REST服务的方式共享数据，互联网上的其他设备便可以通过网络来访问 这些设备。Ajax用于将后台的数据以不需要刷新的方式传递到网站前台，通过 HighCharts框架显示给终端用户。
+
 ##网络服务设计##
+
 物联网的核心也就是网络服务，而网络服务在某种意义上来说，就是需要打造一 个多平台的通信协议，在使机器、家电、设备等连上计算机网络。基本的物联 网系统，不仅能控制设备，还可以在远程查看状态。而复杂的物联网系统可以让 互联网上的设备之间实现互联与通信，也就是物联网的最终目标所在——使物体与 物体之间的交互成为可能，不需要人为去干预。
 设备在现实世界就是一种资源，在互联网上也应该是一种资源，互联网上的网页
 就相当于是一种资源。
@@ -224,7 +226,7 @@ Raspberry Pi可以直接运行Debian GNU/Linux系统，通过网线上网，并�
 Arduino部分硬件程序如下所示，主要负责从串口中读入数据，并用LED显示。
 程序流程图如下所示
 
-[image]: dot/arduino.bmp "Arduino程序流程图"
+[image]: dot/arduino.png "Arduino程序流程图"
 ![Arduino程序流程图][image]
 
 代码如下所示
@@ -261,7 +263,7 @@ Arduino部分硬件程序如下所示，主要负责从串口中读入数据，�
 
 ##Raspberry Pi程序设计##
 
-[image2]: dot/python.bmp "Python 程序流程图"
+[image2]: dot/python.png "Python 程序流程图"
 ![Python程序流程图][image2]
 
 ###获取数据###
