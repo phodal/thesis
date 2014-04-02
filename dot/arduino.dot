@@ -1,8 +1,16 @@
 digraph G{
-        init[label="init port"];
-        init->"setup()";
-        "setup()"->wait[label="wait for serial write"];
-        wait_if_true->wait;
-        wait_if_false->wait;
-        wait_if_true->led_13_high;
+  node[shape=record];
+  Start->"init port";
+  "init port"->check_serial;
+  subgraph cluster{
+    label="handle serial port data";
+    check_serial->format_data;
+    format_data->bool_data;
+    bool_data->led13_high[label="true"];
+    bool_data->led13_low[label="false"];
+    led13_high->check_serial;
+    led13_low->check_serial;
+    bool_data [shape=diamond];
+  }
+
 }
