@@ -17,19 +17,16 @@ Blog](http://www.phodal.com/blog/bare-minimum-iot/) )
 
 -   PHP Laravel 
 -   jQuery (Javascript 主要用于Ajax)
--   jQuery
-    Mobile（可选）(我觉得我有点懒，于是从原来做的项目直接拿了出来）
--   Bootstrap (可选） (其实没有多大实际用处，只是因为好看和jQuery
-    Mobile一样)
+-   jQuery Mobile（可选）(我觉得我有点懒，于是从原来做的项目直接拿了出来）
+-   Bootstrap (可选） (其实没有多大实际用处，只是因为好看和jQuery Mobile一样)
 
 ### 语言:
 
-Processing/C/C++ Arduino用 
+Processing/C/C++ : Arduino 
 
-Python 如果你有Raspberry
-Pi或者与之相近的都可以，只要可以与Arduino串口通信
+Python : Raspberry Pi 或者与之相近设备都可以使用，实现与 Arduino 串口通信
 
-PHP 我学得不是很好，因为Laravel没有让我学好，但是让我能做想做的事。
+PHP 我学得不是很好，因为 Laravel 没有让我学好，但是让我能做想做的事。
 
 ### 相关文章及专栏
 
@@ -57,9 +54,9 @@ PHP 我学得不是很好，因为Laravel没有让我学好，但是让我能做
 
 ### 关于服务器
 
--   Nginx 需要配置，具体配置可以参照github上面的代码
+-   Nginx 需要配置，具体配置可以参照 Github 上面的代码
 -   LNMP 直接用上面的会比较简单，但是可能也会遇到一些问题。
--   Phpmyadmin 最好需要有这个，如果不是很精通MYSQL
+-   Phpmyadmin 最好需要有这个，如果不是很精通 MySQL
 
 ### 补充说明
 
@@ -69,13 +66,15 @@ Arduino 不是必需的，只要你懂得如何用你的芯片进行串口通信
 Linux，主要用在路由器用的，上面可以跑 Python。或者等等过些时候的小米路由器，可以加这个在上面。
 
 如果你没有服务器没有 Raspberry
-Pi，那就找个路由器来当服务器吧，相关文章如下
+Pi，那就找个路由器来当服务器吧，相关文章如下 :
 
-[Openwrt python,openwrt上使用Python](http://blog.csdn.net/phodal/article/details/8521712)对了，如果你觉得哪里有问题记得在 Github 上提出来，而不是在原文。
+[Openwrt python,openwrt上使用Python](http://blog.csdn.net/phodal/article/details/8521712)
+
+对了，如果你觉得哪里有问题记得在 Github 上提出来，而不是在原文。
 
 ### 注意
 
-<blockquote>！请尽可能少我的用我的网站做测试</blockquote>
+<blockquote>！请尽可能少用我的网站做测试</blockquote>
 
 
 如何开始
@@ -87,51 +86,52 @@ Pi，那就找个路由器来当服务器吧，相关文章如下
 创建一个新的数据库，如iot 编辑 app/config/database.php
 
 <pre><code class="php">
-    'mysql' => array(
-    'driver' => 'mysql',
-    'host' => 'localhost',
-    'database' => 'iot',
-    'username' => 'root',
-    'password' => ' ',
-    'charset' => 'utf8',
-    'collation' => 'utf8_unicode_ci',
-    'prefix' => '',
-    ),
+'mysql' => array(
+'driver' => 'mysql',
+'host' => 'localhost',
+'database' => 'iot',
+'username' => 'root',
+'password' => ' ',
+'charset' => 'utf8',
+'collation' => 'utf8_unicode_ci',
+'prefix' => '',
+),
 </code></pre>
 
 
 配置nginx，添加，详细可参考nginx下面的配置
 
 <pre><code class="bash">
-    # include /etc/nginx/includes/enforce_non_www;
-    if ($host ~* ^www\.(.*))
-    {
-    set $host_without_www $1;
-    rewrite ^/(.*)$ $scheme://$host_without_www/$1 permanent;
-    }
+# include /etc/nginx/includes/enforce_non_www;
+if ($host ~* ^www\.(.*))
+{
+set $host_without_www $1;
+rewrite ^/(.*)$ $scheme://$host_without_www/$1 permanent;
+}
 
-    # Check if file exists
-    if (!-e $request_filename)
-    {
-    rewrite ^/(.*)$ /index.php?/$1 last;
-    break;
-    }
+# Check if file exists
+if (!-e $request_filename)
+{
+rewrite ^/(.*)$ /index.php?/$1 last;
+break;
+}
 </code></pre>
 
 
 测试
 
-<pre><code class="bash">
-    $ sudo python python/get.py
-</code></pre>
+```
+$ sudo python python/get.py
+```
 
 
 再根据需要修改端口，视真实的端口而修改。
 
 ##关于物联网##
 <blockquote>物联网（Internet of Things，缩写IOT）是一个基于互联网、传统电信网等信息承载体，让所有能够被独立寻址的普通物理对象实现互联互通的网络。
+</blockquote>
 
-物联网一般为无线网，由于每个人周围的设备可以达到一千至五千个，所以物联网可能要包含500万亿至一千万亿个物体，在物联网上，每个人都可以应用电子标签将真实的物体上网联结，在物联网上都可以查找出它们的具体位置。通过物联网可以用中心计算机对机器、设备、人员进行集中管理、控制，也可以对家庭设备、汽车进行遥控，以及搜寻位置、防止物品被盗等各种应用。</blockquote>
+物联网一般为无线网，由于每个人周围的设备可以达到一千至五千个，所以物联网可能要包含500万亿至一千万亿个物体，在物联网上，每个人都可以应用电子标签将真实的物体上网联结，在物联网上都可以查找出它们的具体位置。通过物联网可以用中心计算机对机器、设备、人员进行集中管理、控制，也可以对家庭设备、汽车进行遥控，以及搜寻位置、防止物品被盗等各种应用。
 
 简单的来说 Internet 是一个由计算机组成的网络，那么物联网就是一个由物体(Things)组成的网络，只不过其依赖于 Internet，是 Internet 的一部分。
 
