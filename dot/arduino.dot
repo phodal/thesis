@@ -1,6 +1,7 @@
 digraph G{
   node[shape=record];
-  Start->"init port";
+  Start ->"init port";
+  Start [shape=ellipse];
   "init port"->check_serial;
   subgraph cluster{
     label="handle serial port data";
@@ -12,5 +13,4 @@ digraph G{
     led13_low->check_serial;
     bool_data [shape=diamond];
   }
-
 }

@@ -197,8 +197,8 @@ Python相对于Ruby有着更好的跨平台能力，同时有理好的可读性�
 封装了串口通讯模块，支持Linux、Windows、BSD(可能支持所有支持POSIX的操作系统)，支持Jython(Java)和IconPython(.NET and Mono).
 
 在使用PySerial之后，我们只需要
-``` python
 
+``` python
     ser=serial.Serial("/dev/ttyACM0",9600)
     ser.write("1")
 
@@ -208,8 +208,9 @@ Python相对于Ruby有着更好的跨平台能力，同时有理好的可读性�
 ##网页通信##
 
 **Ajax**
-AJAX[^ajax]是由Jesse James Gaiiett创造的名词，是指一种创建交互式网页应用的网页开发技术。
+AJAX [^ajax] 是由Jesse James Gaiiett创造的名词，是指一种创建交互式网页应用的网页开发技术。
 系统主要用Ajax来实现实时温度显示，通过直接访问JSON数据的情况下，可以在不需要刷新页面的情况下直接读取数据。
+
 [^ajax]: "Asynchronous JavaScript and XML"（异步JavaScript和XML)
 
 ##数据可视化框架选择##
@@ -277,7 +278,7 @@ Arduino部分硬件程序如下所示，主要负责从串口中读入数据，�
 
 ###获取数据###
 
-Raspberry Pi端的主要功能便是将数据从 http://www.xianuniversity.com/athome/1 下载下来并解析数据，再将数据用串口通讯的方式传递给Arduino。
+Raspberry Pi端的主要功能便是将数据从 [http://www.xianuniversity.com/athome/1][xianuniversity] [^domain] 下载下来并解析数据，再将数据用串口通讯的方式传递给Arduino。
 
 在Debian系统中，自带了python语言，python有良好的动态特性，同时有强大的自建库功能。在python语言中可以用自带的urllib2库打开并下载网页的内容，将上述网址中的JSON数据下载到本地。
 
@@ -295,6 +296,9 @@ Raspberry Pi端的主要功能便是将数据从 http://www.xianuniversity.com/a
    ]
 ```
 
+[xianuniversity]:http://www.xianuniversity.com/athome/1
+
+
 将上述中的数据取出来后，通过python中的json库，将json数据转换为数组，将取出数据中的第一个结果中的id的值。
 
 ###串口通讯###
@@ -302,13 +306,14 @@ Raspberry Pi端的主要功能便是将数据从 http://www.xianuniversity.com/a
 
 ####安装pyserial####
 
-pip常用命令有install、uninstall以及search，install顾名思义就是安装，安装pip库如下所示[^windows]，如后代码如下所示:
+pip常用命令有install、uninstall以及search，install顾名思义就是安装，安装pip库如下所示[^windows]，如后代码如下所示，$[^dollar]开头:
 
 ``` bash
-     pip install pyserial
+    $pip install pyserial
 ```
 
-[^windows]:在Windows系统中需要先安装pip，再安装pyserial
+[^dollar]:指在*nix系统的终端中执行的命令。
+[^windows]:在Windows系统中需要先安装pip，再安装pyserial。
 
 ###python串口通讯###
 在Linux内核的系统[^windows_com]中虚拟串口用的节点是ttyACM，位于/dev目录下。
@@ -317,9 +322,9 @@ pip常用命令有install、uninstall以及search，install顾名思义就是安
     serial.Serial("/dev/ttyACM0",9600)
 ```
 
-这句代码的意思便是打开这个设备，以9600的速率传输数据。
+便是打开这个设备，以9600的速率传输数据。
 
-[^windows_com]:在Windows系统上，只需要将/dev/ttyACM0改为对应的com口
+[^windows_com]:在Windows系统上，只需要将/dev/ttyACM0改为对应的com口。
 
 ``` python
 import json
@@ -367,5 +372,33 @@ while 1:
 
 一个PUT动作但是我们更新资源，就好比是我们创建一个日志或者一个说说一样。DELETE动作，便是删除动作了，而这也是一个物联网系统服务所需要的。
 
+而我们构建一个REST服务也就相当于是诸如我们get一个URL下的某个数据
+
+    $curl http://www.xianuniversity.com/athome/1
+
+
+
 ##网站前台设计##
 在对网站前台设计的时候，在考虑不同移动设备的兼容的同时，也需要保持一个良好可用的结构。而系统在前台的主要功能是在于控制物体的状态、显示一些数值的变化，控制物体状态的关键在于如何将数据由前台POST到后台，在网页端可以用POST，而在移动端则可以用JSON API。
+
+###Ajax###
+
+- AJAX : Asynchronous JavaScript and XML（异步的 JavaScript 和 XML）。
+- AJAX 不是新的编程语言，而是一种使用现有标准的新方法。
+- AJAX 是与服务器交换数据并更新部分网页的艺术，在不重新加载整个页面的情况下。
+
+剥离后的Ajax部分代码如下所示，主要用的是 jQuery 框架的 getJSON 来实现的
+
+    var dataLength = [];
+
+    function drawTemp() {
+        var zero = [];
+        $.getJSON('/athome/', function(json) {
+            var items = [];
+            dataLength.push(json.length);
+            $.each(json, function(key, val) {
+                zero.push(val.temperature);
+            });
+    };
+
+实际上，我们做的只是从 /athome/ 下面获取数据，再将数据堆到数组里面，再把这部分放到图形中。
