@@ -128,7 +128,7 @@ JSON[^json]是一种轻量级的数据交换格式。 易于人阅读和编写�
 JSON相对于XML来说可以减少文件的大小，同时我们可以用于网站前端的数据通讯。
 
 [^json]: JavaScript Object Notation
-[^cfamily]: （包括C, C++, C#, Java, JavaScript, Perl, Python等）
+[^cfamily]: 包括C, C++, C#, Java, JavaScript, Perl, Python等
 
 ####XML####
 
@@ -146,7 +146,7 @@ XML具有良好的可读性，有着较好的库支持，从Java语言到其他�
 
 PHP [^php] 是一种开源的通用计算机脚本语言，尤其适用于网络开发并可嵌入HTML中使用。PHP的语法借鉴吸收了C语言、Java和Perl等流行计算机语言的特点，易于一般程序员学习。PHP的主要目标是允许网络开发人员快速编写动态页面，但PHP也被用于其他很多领域。
 
-[^php]:PHP：Hypertext Preprocessor，即“PHP：超文本预处理器”
+[^php]:PHP：Hypertext Preprocessor，即超文本预处理器
 
 **Laravel**
 
@@ -211,7 +211,7 @@ Python相对于Ruby有着更好的跨平台能力，同时有理好的可读性�
 AJAX [^ajax] 是由Jesse James Gaiiett创造的名词，是指一种创建交互式网页应用的网页开发技术。
 系统主要用Ajax来实现实时温度显示，通过直接访问JSON数据的情况下，可以在不需要刷新页面的情况下直接读取数据。
 
-[^ajax]: "Asynchronous JavaScript and XML"（异步JavaScript和XML)
+[^ajax]: Asynchronous JavaScript and XML（异步JavaScript和XML)
 
 ##数据可视化框架选择##
 
