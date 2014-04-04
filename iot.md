@@ -130,6 +130,7 @@ JSON相对于XML来说可以减少文件的大小，同时我们可以用于网�
 [^json]: JavaScript Object Notation
 [^cfamily]: 包括C, C++, C#, Java, JavaScript, Perl, Python等
 
+对于基于浏览器的客户端使用的web服务更倾向于使用JSON作为表述格式。
 ####XML####
 
 可扩展标记语言[^xml]，是一种标记语言。标记指计算机所能理解的信息符号，通过此种标记，计算机之间可以处理包含各种信息的文章等。如何定义这些标记，既可以选择国际通用的标记语言，比如HTML，也可以使用像XML这样由相关人士自由决定的标记语言，这就是语言的可扩展性。XML是从标准通用标记语言（SGML）中简化修改出来的。它主要用到的有可扩展标记语言、可扩展样式语言（XSL）、XBRL和XPath等。
@@ -227,8 +228,8 @@ Raspberry Pi开发板与Arduino开发板，通过USB方口线连接。
 Raspberry Pi可以直接运行Debian GNU/Linux系统，通过网线上网，并从服务器中读取数据，同时借由Python语言收发串口数据。
 
 ##软件设计##
-在本地我们需要解决的问题可以如下描述：
-``` algorithm
+在本地我们需要解决的问题可以如下描述，Arduino开发板从串口一直读取数据，Raspberry Pi从URL中验证数据、解析数据，再将数据发送到串口：
+``` ada
 arduino:
         begin
            repeat
@@ -305,20 +306,18 @@ Raspberry Pi端的主要功能便是将数据从 [http://www.xianuniversity.com/
 数据采用的是JSON格式，具有良好的可读性，同时方便于解析，相比于XML格式又可以减少文件大小，
 
 ``` javascript
-    [
-    {
+    [{
         "id": 1,
         "temperature": 10,
         "sensors1": 22,
         "sensors2": 11,
         "led1": 0
-   }
-   ]
+   }]
 ```
 
 [xianuniversity]:http://www.xianuniversity.com/athome/1
 
-
+JSON的
 将上述中的数据取出来后，通过python中的json库，将json数据转换为数组，将取出数据中的第一个结果中的id的值。
 
 ###串口通讯###
@@ -374,8 +373,63 @@ while 1:
 ##网络服务程序设计##
 
 对于物联网系统网络的核心是构建一个RESTful服务，而这构建RESTful的核心便是基础的HTPP协议。基础的HTTP协议便是:GET、POST、PUT、DELETE。它们分别对应四种基本操作：GET用来获取资源，POST用来新建资源（也可以用于更新资源），PUT用来更新资源，DELETE用来删除资源。
+简要的来说，一个GET动作便是在打开一个网页的时候，看到的内容，便是GET到的资源。而在获取取到网页的内容之前，会有一个POST动作到所要打开的网站的服务器。
 
-简要的来说，一个GET动作便是在我们打开一个网页的时候，我们看到的内容，便是我们GET到的资源。而在我们获取到网页的内容之前，我们会有一个POST动作到我们所要打开的网站 的服务器，下面这是一个简化了的HTTP POST动作:
+###基本的REST服务###
+
+REST服务实际上是充当着网络与设备的传输介质，构建一个REST服务也就相当于获取一个URL下的某个数据
+
+    $curl http://www.xianuniversity.com/athome/1  
+
+假设有这样一个资源用于呈现led的状态，即 http://localhost/status/1 [^localhost]，获取这个LED的状态便发出了类似下面这样的请求:
+``` python
+    GET /status/1 HTTP/1.1
+    Host:localhost
+    Cotent-Type:application/json;charset=UTF-8
+```
+[^localhost]:在本地进行web开发时，浏览器可以识别localhost，配置好Hosts时相当于127.0.0.1。
+
+在客户端发出上述的请求的时候，服务端需要对其做出响应，构造出一个下面的结果
+``` javascript
+     [{
+       "status":1
+     }]
+```
+1代表给予灯的状态应该是亮的,在那之后需要做的便是将其通过串口发送给单片机进行处理，对应于一个关机的结果便是
+``` javascript
+     [{
+       "status":0
+     }]
+```
+这样就完成了基本的状态设计。而对于系统最后需要解析的数据的结果来说，还需要加入其他元素，
+``` javascript
+    [{
+        "id": 1,
+        "temperature": 10,
+        "sensors1": 22,
+        "sensors2": 11,
+        "led1": 0
+   }]
+```
+这里也涉及到了json数据结构的设计，可以将上面的结果设计为
+``` javascript
+  [{
+      "id": 1,
+      "temperature": 10,
+      "sensors":[{
+      	"sensor":22,
+      	"sensor":11,
+      	}],
+      "led1": 0
+  }]
+```
+这种具有更好的可读性，然而在对于网速速度要求高的情况下，会表现得不好，同时会造成额外的系统开销。对于这样一个需要不断读取数据的系统来说，采用单层结构的json数据会更具有优势。
+在设计这样一个接口的时候，需要考虑客户端可能需要获取全部的数据
+``` python
+    GET /status HTTP/1.1
+    Host:localhost
+    Cotent-Type:application/json;charset=UTF-8
+```
 
 ``` bash
 
@@ -386,17 +440,8 @@ while 1:
     Authorization: 123456
     Accept-Encoding: gzip
 
-    source=12345678&text=http%3A%2F%2Fexample.com
-
 ```
-
 一个PUT动作但是我们更新资源，就好比是我们创建一个日志或者一个说说一样。DELETE动作，便是删除动作了，而这也是一个物联网系统服务所需要的。
-
-而我们构建一个REST服务也就相当于是诸如我们get一个URL下的某个数据
-
-    $curl http://www.xianuniversity.com/athome/1
-
-
 
 ##网站前台设计##
 在对网站前台设计的时候，在考虑不同移动设备的兼容的同时，也需要保持一个良好可用的结构。而系统在前台的主要功能是在于控制物体的状态、显示一些数值的变化，控制物体状态的关键在于如何将数据由前台POST到后台，在网页端可以用POST，而在移动端则可以用JSON API。
@@ -406,9 +451,12 @@ while 1:
 - AJAX : Asynchronous JavaScript and XML（异步的 JavaScript 和 XML）。
 - AJAX 不是新的编程语言，而是一种使用现有标准的新方法。
 - AJAX 是与服务器交换数据并更新部分网页的艺术，在不重新加载整个页面的情况下。
-
 剥离后的Ajax部分代码如下所示，主要用的是 jQuery 框架的 getJSON 来实现的
+```algorithm
 
+
+```
+``` javascript
     var dataLength = [];
     function drawTemp() {
         var zero = [];
@@ -419,6 +467,7 @@ while 1:
                 zero.push(val.temperature);
             });
     };
+```
 
 实际上，我们做的只是从 /athome/ 下面获取数据，再将数据堆到数组里面，再把这部分放到图形中。
 
