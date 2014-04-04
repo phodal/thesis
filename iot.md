@@ -139,7 +139,6 @@ XML具有良好的可读性，有着较好的库支持，从Java语言到其他�
 [^xml]: eXtensible Markup Language，简称: XML
 
 ##网络服务方案选择##
-
 ###语言选择###
 
 **PHP Laravel**
@@ -160,7 +159,7 @@ Java是一种可以撰写跨平台应用软件的面向对象的程序设计语�
 
 **Spring**
 
-Spring 也表示是一个开源框架，是为了解决企业应用程序开发复杂性由Rod Johnson创建的。框架的主要优势之一就是其分层架构，分层架构允许使用者选择使用哪一个组件，同时为 J2EE 应用程序开发提供集成的框架。Spring使用基本的JavaBean来完成以前只可能由EJB完成的事情。然而，Spring的用途不仅限于服务器端的开发。从简单性、可测试性和松耦合的角度而言，任何Java应用都可以从Spring中受益。
+Spring是一个开源框架，是为了解决企业应用程序开发复杂性。Spring框架的主要优势之一就是其分层架构，分层架构允许使用者选择使用哪一个组件，同时为 J2EE 应用程序开发提供集成的框架。Spring使用基本的JavaBean来完成以前只可能由EJB完成的事情。然而，Spring的用途不仅限于服务器端的开发。从简单性、可测试性和松耦合的角度而言，任何Java应用都可以从Spring中受益。
 
 ##其它##
 
@@ -216,6 +215,7 @@ AJAX [^ajax] 是由Jesse James Gaiiett创造的名词，是指一种创建交互
 ##数据可视化框架选择##
 
 **HighCharts**
+
 Highcharts 是一个用纯JavaScript编写的一个图表库， 能够很简单便捷的在web网站或是web应用程序添加有交互性的图表，并且免费提供给个人学习、个人网站和非商业用途使用。HighCharts支持的图表类型有曲线图、区域图、柱状图、饼状图、散状点图和综合图表。
 **D3.js**
 
@@ -226,9 +226,29 @@ Highcharts 是一个用纯JavaScript编写的一个图表库， 能够很简单�
 Raspberry Pi开发板与Arduino开发板，通过USB方口线连接。
 Raspberry Pi可以直接运行Debian GNU/Linux系统，通过网线上网，并从服务器中读取数据，同时借由Python语言收发串口数据。
 
-###Arduino###
-
 ##软件设计##
+在本地我们需要解决的问题可以如下描述：
+``` algorithm
+arduino:
+        begin
+           repeat
+             wait(serial.open)
+               data:=receive_data()
+               led_status:=parse(data)
+               if led_status
+                  oped(led.id)
+           util false
+        end
+raspberrypi:
+        begin
+           repeat
+             json:=get_data(url)
+             if validate(json).success()
+               data:=parse（json)
+               serial.write(data)
+           util false
+        end
+```
 ##Arduino程序设计##
 
 Arduino部分硬件程序如下所示，主要负责从串口中读入数据，并用LED显示。
@@ -390,7 +410,6 @@ while 1:
 剥离后的Ajax部分代码如下所示，主要用的是 jQuery 框架的 getJSON 来实现的
 
     var dataLength = [];
-
     function drawTemp() {
         var zero = [];
         $.getJSON('/athome/', function(json) {
@@ -402,3 +421,6 @@ while 1:
     };
 
 实际上，我们做的只是从 /athome/ 下面获取数据，再将数据堆到数组里面，再把这部分放到图形中。
+
+[chart1]: dot/chart.png "chart"
+![chart][chart1]

@@ -173,7 +173,7 @@
 \RequirePackage{subfig} % config兼容subfigure命令
 \RequirePackage{float} % 可以使用［H］命令
 %\RequirePackage{ccaption}  %与subfig冲突，弃用
-\RequirePackage{caption} % 定义图的标题格式：居中. 使用caption3.0
+\RequirePackage{caption} % lislis：居中. 使用caption3.0
 \DeclareCaptionFont{capFont}{\ftcaptionfont} % 表格名及图名
 \DeclareCaptionLabelSeparator{twospace}{~~}
 \captionsetup{ labelsep=twospace,% 去掉图标签后的冒号
@@ -269,9 +269,8 @@
 \renewcommand{\algorithmcfname}{算法}
 \renewcommand\thealgocf{\csname the\algocf@within\endcsname-\@arabic\c@algocf}%
 
-\RequirePackage{listings}
-\lstset{
-  tabsize=4, %
+\usepackage{listings}
+\lstset{tabsize=4, %
   frame=shadowbox, %把代码用带有阴影的框圈起来
   commentstyle=\color{red!50!green!50!blue!50},%浅灰色的注释
   rulesepcolor=\color{red!20!green!20!blue!20},%代码块边框为淡青色
@@ -289,16 +288,17 @@
   breaklines=true, %对过长的代码自动换行
   breakautoindent=true,%
   breakindent=4em, %
-  %aboveskip=1em, %代码块边框
+  escapebegin=\begin{CJK*}{GBK}{hei},escapeend=\end{CJK*},
+  aboveskip=1em, %代码块边框
   %% added by http://bbs.ctex.org/viewthread.php?tid=53451
   fontadjust,
   captionpos=t,
   framextopmargin=2pt,framexbottommargin=2pt,abovecaptionskip=-3pt,belowcaptionskip=3pt,
   xleftmargin=4em,xrightmargin=4em, % 设定listing左右的空白
-  % texcl=true,
+  texcl=true,
   % 设定中文冲突，断行，列模式，数学环境输入，listing数字的样式
-  extendedchars=false,columns=flexible,mathescape=false
-  numbersep=-1em
+  extendedchars=false,columns=flexible,mathescape=true
+  % numbersep=-1em
 }
 \renewcommand{\lstlistingname}{代码} %% 重命名Listings标题头 added by Guan
 
