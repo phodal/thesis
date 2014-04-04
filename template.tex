@@ -1,4 +1,4 @@
-\documentclass[a4paper, 11pt]{article}
+\documentclass[a4paper, 11pt]{scutthesis}
 \usepackage{geometry} 		% 設定邊界
 \geometry{
   top=1in,
@@ -9,7 +9,7 @@
   headsep=2ex
 }
 \usepackage{tabu}
-\usepackage[T1]{fontenc}
+
 \usepackage{lmodern}
 \usepackage{amssymb,amsmath}
 \usepackage{ifxetex,ifluatex}
@@ -158,89 +158,7 @@ $endif$
 \author{$for(author)$$author$$sep$ \and $endfor$}
 \date{$date$}
 
-%%%%%% 设置字号 %%%%%%
-\newcommand{\chuhao}{\fontsize{42pt}{\baselineskip}\selectfont}
-\newcommand{\xiaochuhao}{\fontsize{36pt}{\baselineskip}\selectfont}
-\newcommand{\yihao}{\fontsize{28pt}{\baselineskip}\selectfont}
-\newcommand{\erhao}{\fontsize{21pt}{\baselineskip}\selectfont}
-\newcommand{\xiaoerhao}{\fontsize{18pt}{\baselineskip}\selectfont}
-\newcommand{\sanhao}{\fontsize{15.75pt}{\baselineskip}\selectfont}
-\newcommand{\sihao}{\fontsize{14pt}{\baselineskip}\selectfont}
-\newcommand{\xiaosihao}{\fontsize{12pt}{\baselineskip}\selectfont}
-\newcommand{\wuhao}{\fontsize{10.5pt}{\baselineskip}\selectfont}
-\newcommand{\xiaowuhao}{\fontsize{9pt}{\baselineskip}\selectfont}
-\newcommand{\liuhao}{\fontsize{7.875pt}{\baselineskip}\selectfont}
-\newcommand{\qihao}{\fontsize{5.25pt}{\baselineskip}\selectfont}
-
-%%%% 设置 section 属性 %%%%
-\makeatletter
-\renewcommand\section{\@startsection{section}{1}{\z@}%
-{-1.5ex \@plus -.5ex \@minus -.2ex}%
-{.5ex \@plus .1ex}%
-{\normalfont\sihao\CJKfamily{STHeiti}}}
-\makeatother
-
-%%%% 设置 subsection 属性 %%%%
-\makeatletter
-\renewcommand\subsection{\@startsection{subsection}{1}{\z@}%
-{-1.25ex \@plus -.5ex \@minus -.2ex}%
-{.4ex \@plus .1ex}%
-{\normalfont\xiaosihao\CJKfamily{STHeiti}}}
-\makeatother
-
-%%%% 设置 subsubsection 属性 %%%%
-\makeatletter
-\renewcommand\subsubsection{\@startsection{subsubsection}{1}{\z@}%
-{-1ex \@plus -.5ex \@minus -.2ex}%
-{.3ex \@plus .1ex}%
-{\normalfont\xiaosihao\CJKfamily{STHeiti}}}
-\makeatother
-
-%%%% 段落首行缩进两个字 %%%%
-\makeatletter
-\let\@afterindentfalse\@afterindenttrue
-\@afterindenttrue
-\makeatother
-\setlength{\parindent}{2em}  %中文缩进两个汉字位
-
-
-%%%% 下面的命令重定义页面边距，使其符合中文刊物习惯 %%%%
-\addtolength{\topmargin}{-2pt}
-\setlength{\oddsidemargin}{0.63cm}  % 3.17cm - 1 inch
-\setlength{\evensidemargin}{\oddsidemargin}
-\setlength{\textwidth}{14.66cm}
-\setlength{\textheight}{24.00cm}    % 24.62
-
-%%%% 下面的命令设置行间距与段落间距 %%%%
-\linespread{1.4}
-% \setlength{\parskip}{1ex}
-\setlength{\parskip}{0.5\baselineskip}
-
-
 \begin{document}
-%%%% 定理类环境的定义 %%%%
-\newtheorem{example}{例}             % 整体编号
-\newtheorem{algorithm}{算法}
-\newtheorem{theorem}{定理}[section]  % 按 section 编号
-\newtheorem{definition}{定义}
-\newtheorem{axiom}{公理}
-\newtheorem{property}{性质}
-\newtheorem{proposition}{命题}
-\newtheorem{lemma}{引理}
-\newtheorem{corollary}{推论}
-\newtheorem{remark}{注解}
-\newtheorem{condition}{条件}
-\newtheorem{conclusion}{结论}
-\newtheorem{assumption}{假设}
-
-%%%% 重定义 %%%%
-\renewcommand{\contentsname}{目录}  % 将Contents改为目录
-\renewcommand{\abstractname}{摘要}  % 将Abstract改为摘要
-\renewcommand{\refname}{参考文献}   % 将References改为参考文献
-\renewcommand{\indexname}{索引}
-\renewcommand{\figurename}{图}
-\renewcommand{\tablename}{表}
-\renewcommand{\appendixname}{附录}
 
 \maketitle
 
