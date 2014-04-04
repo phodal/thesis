@@ -12,8 +12,7 @@ pdf:
 	sed 's/">/}/g' iot2.md > iot3.md
 	sed 's/<\/code><\/pre>/~~~~ /g' iot3.md > iot2.md
 	sed 's/.png/.ps/g' iot2.md > iot3.md
-	pandoc --template=template.tex --latex-engine=xelatex iot3.md -o iot.pdf --highlight-style=pygments
-	pandoc --template=template.tex --latex-engine=xelatex iot3.md -o iot.tex --highlight-style=pygments
+	pandoc --template=template.tex --latex-engine=xelatex --csl=scutthesis.cls iot3.md -o iot.pdf --smart --highlight-style=pygments
 	@echo "remove the iot temp file"
 	rm iot2.md iot3.md
 

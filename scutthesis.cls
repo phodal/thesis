@@ -1,13 +1,13 @@
 % Copyright (C) 2010-2011 by Alwin Tsui <alwintsui@gmail.com>
 % and Quansheng Guan <qshguan@gmail.com>
-% 
+%
 % This file is part of the scutthesis package project.
 % http://scutthesis.googlecode.com/
 % ---------------------------------------------------
 % This file may be distributed and/or modified under the
 % conditions of the GNU General Public License v3
 % of this license or (at your option) any later version.
-% 
+%
 % modified from thuthesis.cls,seuthesis.cls and tjthesis.cls
 
 % 本cls只对中文摘要开始的格式进行设置，至于论文签名的标题，版权声明等，建议到研究生院下载doc版本，
@@ -61,7 +61,7 @@
 \RequirePackage[final]{pdfpages}
 \RequirePackage{color}
 %\RequirePackage{prettyref} %不需要
-\ifdraftmode 
+\ifdraftmode
    \RequirePackage{draftwatermark} %  added by Quansheng Guan, 初稿加上水印背景
    \SetWatermarkText{初稿\small\today}
 \fi
@@ -198,14 +198,14 @@
 {
   \subfloat[#2]{
     \label{#3}
-    \addtocounter{subfigure}{-1} 
+    \addtocounter{subfigure}{-1}
     \subfloat[\vspace{-5pt}#1]{#4}
   }%
 }
- 
 
 
-%% 表格 
+
+%% 表格
 \RequirePackage{array} % 扩展了 array 和 tabular 环境功能
 \RequirePackage{booktabs} % 增加对三线表格的支持 % \toprule，\midrule，\bottomrule
 \usepackage{longtable} % 长表格支持，截断跨页
@@ -312,7 +312,7 @@
 	\refbodyfont
 	\orig@bibliography{#1}
 	\normalsize
-} 
+}
 
 \RequirePackage{array} % 扩展了 array 和 tabular 环境功能
 \RequirePackage[nottoc]{tocbibind} % 将参考文献、索引、表格目录和图形
@@ -320,7 +320,7 @@
 
 % 设置目录
 %%%%%%%%%%%%%%%%%
-\RequirePackage{titletoc} 
+\RequirePackage{titletoc}
 \renewcommand\contentsname{\centerline{\toctitlefont{目\quad{}录}}}
 \titlecontents{chapter}[0ex]{\tocchapterfont}{%
     第\CJKnumber{\thecontentslabel}章\quad{}}{}{%
@@ -352,8 +352,8 @@
 \setlength{\parskip}{0ex}% 正文段前段后距：无空行
 \titlespacing{\chapter}{0pt}{-20pt}{1pt} % 缩短章标题上间距，revised by Quansheng Guan
 \titlespacing{\section}{0pt}{1pt}{1pt}  % 标题间距
-\titlespacing{\subsection}{0pt}{4pt}{0pt} 
-\titlespacing{\subsubsection}{0pt}{6pt}{6pt} 
+\titlespacing{\subsection}{0pt}{4pt}{0pt}
+\titlespacing{\subsubsection}{0pt}{6pt}{6pt}
 
 \newcommand{\linespacing}[1]{\linespread{#1}\selectfont}% 行距命令
 
@@ -374,7 +374,7 @@
     \setfoot{}{\headfont{}\thepage}{}%页码五号宋体居中
     \headrule%上横线
     \setheadrule{1.5pt}%设置横线粗细
-} 
+}
 
 \newpagestyle{appendix_style}{ %针对附录的特殊要求，以section而不是chapter为页眉。
     \sethead[][{\headfont{}\thesissubject}][] % 页眉偶数页，五号字体，居中
@@ -382,9 +382,9 @@
     \setfoot{}{\headfont{}\thepage}{}%页码五号宋体居中
     \headrule%上横线
     \setheadrule{1.5pt}%设置横线粗细
-} 
+}
 
-\newpagestyle{frontstyle}{ 
+\newpagestyle{frontstyle}{
   \setfoot{}{\thepage}{}
 }
 %%%%%%
@@ -416,19 +416,19 @@
   \fi
   \clearpage
   \pagenumbering{arabic}
-   % the original plainstyle is revised to add the pagehead to the first page in a chapter 
-   % the default style of the first page is plain. 
+   % the original plainstyle is revised to add the pagehead to the first page in a chapter
+   % the default style of the first page is plain.
    % \pagestyle{yourstyle} can be used to define the style of other pages,
    % or keep the same as plain.
    \let\ps@plain=\ps@revtitlestyle
-  \pagestyle{revtitlestyle} % revised by Quansheng Guan 
-  %\pagestyle{plain} 
+  \pagestyle{revtitlestyle} % revised by Quansheng Guan
+  %\pagestyle{plain}
   % 开始正文部分
 }
 \renewcommand\backmatter{%
   % there is no label number for reference chapter
  \let\ps@plain=\ps@nolabelchapterstyle
-  \pagestyle{plain} % revised by Quansheng Guan 
+  \pagestyle{plain} % revised by Quansheng Guan
 }
 %==========
 \AtBeginDocument{\CJKindent{}%
@@ -445,16 +445,16 @@
 
 \newenvironment{abstractCn}{
   \chapter*{摘\quad 要}
-  \addcontentsline{toc}{chapter}{摘要} 
+  \addcontentsline{toc}{chapter}{摘要}
 }{}
 
 \newcommand{\keywordsCn}[1]{
   \par
  \vspace{1em}
   \newcommand{\@keywords}{#1}
-  {\noindent\abskeycn 关键词：} {\abskeyscn \@keywords} % \noindent去掉缩进 
+  {\noindent\abskeycn 关键词：} {\abskeyscn \@keywords} % \noindent去掉缩进
 }
-  
+
 \newenvironment{abstractEn}
 {
   \chapter*{Abstract}
@@ -480,7 +480,7 @@
     \setheadrule{1.5pt}%设置横线粗细
   }
 
-   \renewcommand{\thesection}{{#1}\arabic{section}} 
+   \renewcommand{\thesection}{{#1}\arabic{section}}
    \chapter*{#1}
    \addcontentsline{toc}{chapter}{#1}
    \setcounter{section}{0}
@@ -488,7 +488,7 @@
 }
 
 %examples:
-%\appendix{附\quad 录}% 
+%\appendix{附\quad 录}%
 %\section{随机数的生成}%
 %\appendix{攻读博士学位期间取得的研究成果}
 %\appendix{致\quad 谢}%
@@ -514,12 +514,12 @@
                {\list{}{\rightmargin\leftmargin}%\vspace{-15pt}
                 \item\relax}
                {\endlist}
-            
+
 %%定理环境
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \RequirePackage{bm} % 数学符号粗体
 %\RequirePackage[amsmath,thmmarks]{ntheorem}
-\RequirePackage{amsmath,amsthm,mathrsfs} 
+\RequirePackage{amsmath,amsthm,mathrsfs}
 %允许公式换页显示,否则大型推导公式都在一页内，
 %一页显示不下放到第二页，导致很大的空白空间，很不好看
 \allowdisplaybreaks[4]
@@ -560,7 +560,7 @@
 \newtheorem{property}{性质~}[chapter]
 
 \renewenvironment{proof}{\vskip 1pt\indent \itshape 证明:~\normalfont}{\hfill$\square$\vskip 0.01\baselineskip} %$\blacksquare$
-%\renewcommand{\proofname}{\hskip 2em 证明:~} % 
+%\renewcommand{\proofname}{\hskip 2em 证明:~} %
 %%%%%%%%%%%%%%%%%   end of 定理环境
 \setlength\abovedisplayskip{4pt}
 \setlength\belowdisplayskip{4pt}
