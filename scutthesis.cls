@@ -181,6 +181,9 @@
   font={capFont}, figurename=图,tablename=表,listfigurename=插图目录,listtablename=表格目录}
 \captionsetup[figure]{position=bottom}
 \captionsetup[subfloat]{captionskip=6bp,nearskip=0bp,farskip=0bp,topadjust=0bp,justification=centering}
+\let\Oldincludegraphics\includegraphics
+\renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=\maxwidth]{#1}}
+
 %%%%%%%%%%定义双标题命令
 \newcommand{\FigureBicaption}[2]{
   \renewcommand{\figurename}{图}
@@ -233,7 +236,6 @@
 
 \renewcommand{\thefootnote}{注\arabic{footnote}} \setcounter{footnote}{0}
 
-\renewcommand\fps@figure{htbp} % 设置图浮动的默认参数
 \renewcommand\fps@table{htbp}
 
 \renewcommand{\textfraction}{0.07}
@@ -321,7 +323,7 @@
 % 设置目录
 %%%%%%%%%%%%%%%%%
 \RequirePackage{titletoc}
-\renewcommand\contentsname{\centerline{\toctitlefont{目\quad{}录}}}
+\renewcommand\contentsname{目录}
 \titlecontents{chapter}[0ex]{\tocchapterfont}{%
     第\CJKnumber{\thecontentslabel}章\quad{}}{}{%
     \hspace{.5em}\titlerule*[5pt]{$\cdot$}\contentspage}%
