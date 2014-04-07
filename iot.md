@@ -104,52 +104,6 @@ Arduino，是一个开放源代码的单芯片微电脑，它使用了Atmel AVR�
 了基于开放源代码的软硬件平台，构建于开放源代码 simple I/O 接口板，并且
 具有使用类似Java，C 语言的Processing/Wiring开发环境。
 
-[arduinouno]: dot/ArduinoUnoSmd.jpg "Arduino开发板"
-![Arduino开发板][arduinouno]
-
-
-Arduino UNO用的处微控制器是Atmega328，它与Arduino芯片的对应关系如下所示
-
-[atmega328]: dot/atmega328w.png "Arduino管脚Atmega328对应图"
-![Arduino管脚Atmega328对应图][atmega328]
-
-其主要参数如下所示:
-
-高性能,低功耗的AVR®8位微控制器•先进的RISC结构
- - 131条指令
- - 绝大多数为单时钟周期执行
- - 32个通用工作寄存器
- - 全静态工作
- - 高达20 MIPS的吞吐量,在20 MHz
- - 片上2周期乘法器高耐用性非易失性内存段
- - 8K字节的系统内可编程Flash存储器（ATMEGA88PA中）
- - 512字节的EEPROM（ATMEGA88PA）
- - 1K字节的片内SRAM（ATMEGA88PA）
- - 写/擦除次数：10,000次,000 EEPROM
- - 数据保存：20年在85°C/100年在25°C(1)
- - 可选的引导具有独立锁定位代码段在系统编程的片上引导程序真正的同时读 
- - 写操作
- - 编程软件安全锁外设特点
- - 两个8位定时器/计数器具有独立预分频器和比较模式
- - 1个16位定时器/计数器具有独立预分频器,比较模式,并捕获模式
- - 具有独立振荡器的实时计数器
- - 6个PWM通道
- - 8通道10位ADC在TQFP和QFN / MLF封装温度测量
- - 6通道10位ADC引脚PDIP封装温度测量
- - 可编程的串行USART
- - 主/从机模式的SPI串行接口
- - 面向字节的两线串行接口（飞利浦公司的I2C兼容）
- - 独立的片内振荡器的可编程看门狗定时器
- - 片上模拟比较器
- - 中断和唤醒引脚电平变化单片机的特殊功能
- - 上电复位以及可编程的掉电检测
- - 内部校准振荡器
- - 外部和内部中断源
- - 6种睡眠模式：空闲模式,ADC噪声抑制,省电,掉电,待机,扩展Standby
-
-
-
-
 Arduino开发板封装了常用的库到开发环境中，可以让用户在开发产品时，将主
 要注意力放置于所需要实现的功能上，而不是开发的过程中。在为Arduino写串
 口程序时，我们只需要用Serial.begin(9600)以9600的速率初始化串口，而在往
@@ -204,6 +158,7 @@ JSON相对于XML来说可以减少文件的大小，同时我们可以用于网�
 [^cfamily]: 包括C, C++, C#, Java, JavaScript, Perl, Python等
 
 对于基于浏览器的客户端使用的web服务更倾向于使用JSON作为表述格式。
+
 ####XML####
 
 可扩展标记语言[^xml]，是一种标记语言。标记指计算机所能理解的信息符号，
@@ -372,7 +327,52 @@ raspberrypi:
            util false
         end
 ```
-##Arduino程序设计##
+##Arduino##
+
+
+[arduinouno]: dot/ArduinoUnoSmd.png "Arduino开发板"
+![Arduino开发板][arduinouno]
+
+
+Arduino UNO用的处微控制器是Atmega328，它与Arduino芯片的对应关系如下所示
+
+[atmega328]: dot/atmega328w.png "Arduino管脚Atmega328对应图"
+![Arduino管脚Atmega328对应图][atmega328]
+
+其主要参数如下所示:
+
+高性能,低功耗的AVR®8位微控制器•先进的RISC结构
+
+ - 131条指令
+ - 绝大多数为单时钟周期执行
+ - 32个通用工作寄存器
+ - 全静态工作
+ - 高达20 MIPS的吞吐量,在20 MHz
+ - 片上2周期乘法器高耐用性非易失性内存段
+ - 8K字节的系统内可编程Flash存储器（ATMEGA88PA中）
+ - 512字节的EEPROM（ATMEGA88PA）
+ - 1K字节的片内SRAM（ATMEGA88PA）
+ - 写/擦除次数：10,000次,000 EEPROM
+ - 数据保存：20年在85°C/100年在25°C(1)
+ - 可选的引导具有独立锁定位代码段在系统编程的片上引导程序真正的同时读
+ - 写操作
+ - 编程软件安全锁外设特点
+ - 两个8位定时器/计数器具有独立预分频器和比较模式
+ - 1个16位定时器/计数器具有独立预分频器,比较模式,并捕获模式
+ - 具有独立振荡器的实时计数器
+ - 6个PWM通道
+ - 8通道10位ADC在TQFP和QFN / MLF封装温度测量
+ - 6通道10位ADC引脚PDIP封装温度测量
+ - 可编程的串行USART
+ - 主/从机模式的SPI串行接口
+ - 面向字节的两线串行接口（飞利浦公司的I2C兼容）
+ - 独立的片内振荡器的可编程看门狗定时器
+ - 片上模拟比较器
+ - 中断和唤醒引脚电平变化单片机的特殊功能
+ - 上电复位以及可编程的掉电检测
+ - 内部校准振荡器
+ - 外部和内部中断源
+ - 6种睡眠模式：空闲模式,ADC噪声抑制,省电,掉电,待机,扩展Standby
 
 Arduino部分硬件程序如下所示，主要负责从串口中读入数据，并用led灯显示。
 程序流程图如下所示
@@ -414,10 +414,18 @@ Arduino部分硬件程序如下所示，主要负责从串口中读入数据，�
 
 ```
 
-##Raspberry Pi程序设计##
+##Raspberry Pi##
+Raspberrypi如下所示的开发板
+
+[raspi]: dot/raspberrypi.png "Raspberry Pi开发板"
+![Raspberry Pi开发板][raspi]
+
+Raspberry Pi程序
 
 [image2]: dot/python.png "Python 程序流程图"
 ![Python程序流程图][image2]
+
+
 
 ###获取数据###
 
@@ -499,6 +507,19 @@ while 1:
         print "Bad URL or timeout"
 ```
 
+[getjson]: dot/getjson.png "python返回json数据"
+![python返回json数据][getjson]
+
+系统还需要对上面的数据进行处理，只拿其中的结果
+
+[originjson]: dot/origin.png "python处理完后的结果"
+![python处理完后的结果][originjson]
+
+当改变led的状态后，便可以得到下面的结果
+
+[changejson]: dot/change.png "改变状态后的结果"
+![改变状态后的结果][changejson]
+
 #网络系统设计#
 
 ##网络服务程序设计##
@@ -519,6 +540,11 @@ REST服务实际上是充当着网络与设备的传输介质，构建一个REST
 
     $curl http://www.xianuniversity.com/athome/1
 
+返回结果如下所示
+
+[jsondata]: dot/jsondata.png "JSON结果返回图"
+![JSON结果返回图][jsondata]
+
 假设有这样一个资源用于呈现led的状态，即 http://localhost/status/1
 [^localhost]，获取这个LED的状态便发出了类似下面这样的请求:
 
@@ -527,8 +553,7 @@ REST服务实际上是充当着网络与设备的传输介质，构建一个REST
     Host:localhost
     Cotent-Type:application/json;charset=UTF-8
 ```
-[^localhost]:在本地进行web开发时，浏览器可以识别localhost，配置好Hosts
-    时相当于127.0.0.1。
+[^localhost]:在本地进行web开发时，浏览器可以识别localhost，配置好Hosts时相当于127.0.0.1。
 
 在客户端发出上述的请求的时候，服务端需要对其做出响应，构造出一个下面的结果
 ``` javascript
@@ -608,6 +633,12 @@ DELETE动作，便是删除动作了，而这也是一个物联网系统服务�
      if data.get_success
         temperature:=data.push(temperature)
 ````
+系统会不断从后台获取数据结果，如下所示
+
+[request]: dot/request.png "后台获取数据"
+![后台获取数据][request]
+
+在Javascript语言中有函数库可以直接用于获取后台数据——getJSON，可以从指定的URL中获取结果。
 
 ``` javascript
     var dataLength = [];
@@ -624,6 +655,9 @@ DELETE动作，便是删除动作了，而这也是一个物联网系统服务�
 
 实际上，我们做的只是从 /athome/ 下面获取数据，再将数据堆到数组里面，再
 把这部分放到图形中。
+
+[chart1]: dot/chart.png "温度走势图"
+![chart][chart1]
 
 ##系统后台设计##
 
@@ -647,10 +681,13 @@ DELETE动作，便是删除动作了，而这也是一个物联网系统服务�
 当POST数据的时候，便是将数据存往数据库，而GET的时候则是从数据库中拿出
 数据再渲染给浏览器，GET、PUT、DELETE、POST便是对就于数据库的Create、Refresh、Update、Delete
 
+[editjson]: dot/edit.png "控制界面"
+![控制界面][editjson]
+
+当按下Change Status按钮时，系统发生了如下变化
+
+[getpost]: dot/getpost.png "GET POST数据"
+![GET POST数据][getpost]
+
 [^runtime]:这里用的是Linux+Nginx+MySQL+PHP。
 [^createdb]:创建数据的代码:CREATE DATABASE IF NOT EXISTS bbs default charset utf8 COLLATE utf8_general_ci;
-
-
-
-[chart1]: dot/chart.png "温度走势图"
-![chart][chart1]
