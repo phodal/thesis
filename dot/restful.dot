@@ -1,0 +1,39 @@
+digraph G{
+  User->Browser1 [label="GET"];
+  User->Browser2 [label="POST"];
+  User->Browser3 [label="PUT"];
+  User->Browser4 [label="Delete"];
+  subgraph cluster0{
+    DBMS->Database;
+    Database->DBMS;
+  }
+  subgraph cluster1{
+    label="GET Request";
+    Browser1->Server1 ;
+    Server1->DBMS [label="Create"];
+    DBMS->Server1 [label=""];
+    Server1->Browser1;
+  }
+  subgraph cluster2{
+    label="POST Request";
+    Browser2->Server2 ;
+    Server2->DBMS [label="Refresh"];
+    DBMS->Server2 [label=""];
+    Server2->Browser2;
+  } 
+  subgraph cluster3{
+    label="PUT Request";
+    Browser3->Server3 ;
+    Server3->DBMS [label="Update"];
+    DBMS->Server3 [label=""];
+    Server3->Browser3;
+  }
+  subgraph cluster4{
+    Browser4->Server4 ;
+    Server4->DBMS [label="Delete"];
+    DBMS->Server4 [label=""];
+    Server4->Browser4;
+    label="Delete Request";
+  } 
+
+}

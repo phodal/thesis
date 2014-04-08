@@ -71,6 +71,16 @@ PI开发板相连来获取实时状态。Raspberry PI作为一个ARM开发板，
 有很多产品不必也windows兼容，因此，研究单片机系统接入网络，前途宽广。
 
 #系统总体设计方案#
+
+物联网的核心也就是网络服务，而网络服务在某种意义上来说，就是需要打造一
+个多平台的通信协议，在使机器、家电、设备等连上计算机网络。基本的物联
+网系统，不仅能控制设备，还可以在远程查看状态。而复杂的物联网系统可以让
+互联网上的设备之间实现互联与通信，也就是物联网的最终目标所在——使物体与
+物体之间的交互成为可能，不需要人为去干预。
+
+设备在现实世界就是一种资源，在互联网上也应该是一种资源，互联网上的网页
+就相当于是一种资源。
+
 Arduino+Raspberry Pi+Laravel+JSON+RESTful+Ajax+Python+HighCharts
 
 [struct]: dot/struct.png "系统框架图"
@@ -82,17 +92,6 @@ Laravel框架构架于服务器之上，将Raspbery Pi获取过来的数据存�
 据，再以REST服务的方式共享数据，互联网上的其他设备便可以通过网络来访问
 这些设备。Ajax用于将后台的数据以不需要刷新的方式传递到网站前台，通过
 HighCharts框架显示给终端用户。
-
-##网络服务设计##
-
-物联网的核心也就是网络服务，而网络服务在某种意义上来说，就是需要打造一
-个多平台的通信协议，在使机器、家电、设备等连上计算机网络。基本的物联
-网系统，不仅能控制设备，还可以在远程查看状态。而复杂的物联网系统可以让
-互联网上的设备之间实现互联与通信，也就是物联网的最终目标所在——使物体与
-物体之间的交互成为可能，不需要人为去干预。
-
-设备在现实世界就是一种资源，在互联网上也应该是一种资源，互联网上的网页
-就相当于是一种资源。
 
 ##硬件方案选择##
 
@@ -174,6 +173,7 @@ XML具有良好的可读性，有着较好的库支持，从Java语言到其他�
 [^xml]: eXtensible Markup Language，简称: XML
 
 ##网络服务方案选择##
+
 ###语言选择###
 
 **PHP Laravel**
@@ -210,6 +210,10 @@ J2EE 应用程序开发提供集成的框架。Spring使用基本的JavaBean来�
 可能由EJB完成的事情。然而，Spring的用途不仅限于服务器端的开发。从简单
 性、可测试性和松耦合的角度而言，任何Java应用都可以从Spring中受益。
 
+由于相较于Java在web方面没有PHP来得快速、简单、有效，同时Laravel框架在
+某些方面如数据迁移、代码生成比Spring快，同时不需要依赖于开发环境，这里
+以Laravel作为框架，可以利用artisan工具等的强大驱动开发。
+
 ##其它##
 
 ###数据通讯设备###
@@ -218,28 +222,22 @@ J2EE 应用程序开发提供集成的框架。Spring使用基本的JavaBean来�
 
 Raspberry Pi是一款针对电脑业余爱好者、教师、小学生以及小型企业等用户的
 迷你电脑，预装Linux系统，体积仅信用卡大小，搭载ARM架构处理器，运算性能
-和智能手机相仿。
-
-在接口方面，Raspberry Pi提供了可供键鼠使用的USB接口，此外还有千兆以太
-网接口、SD卡扩展接口以及1个HDMI高清视频输出接口，可与显示器或者TV相连。
-
-**Debian**
-
-广义的Debian是指一个致力于创建自由操作系统的合作组织及其作品，由于
-Debian项目众多内核分支中以Linux宏内核为主，而且 Debian开发者 所创建的
-操作系统中绝大部分基础工具来自于GNU工程 ，因此 “Debian” 常指Debian
-GNU/Linux。
-
-**Linux**
+和智能手机相仿。在接口方面，Raspberry Pi提供了可供键鼠使用的USB接口，此外
+还有千兆以太网接口、SD卡扩展接口以及1个HDMI高清视频输出接口，可与显示器或者TV相连。
 
 Linux是一套免费使用和自由传播的类Unix操作系统，是一个基于POSIX和UNIX的
 多用户、多任务、支持多线程和多CPU的操作系统。它能运行主要的UNIX工具软
 件、应用程序和网络协议。它支持32位和64位硬件。Linux继承了Unix以网络为
 核心的设计思想，是一个性能稳定的多用户网络操作系统。
 
+Raspberry Pi相比于一般的ARM开发板来说，由于其本身搭载着Linux操作系统，可以用
+诸如Python、Ruby或Bash来执行脚本，而不是通过编译程序来运行，具有更高的开发效率。
+
+
 ##辅助语言选择##
 
 **Python**
+
 Python, 是一种面向对象、直译式计算机程序设计语言，由Guido van Rossum于
 1989年底发明，第一个公开发行版发行于1991年。Python语法简洁而清晰，具有
 丰富和强大的类库。它常被昵称为胶水语言，它能够很轻松的把用其他语言制作
@@ -258,17 +256,16 @@ Python相对于Ruby有着更好的跨平台能力，同时有理好的可读性�
 
 ##串口通信模块##
 
-**Pyserial**
+**PySerial**
 
-封装了串口通讯模块，支持Linux、Windows、BSD(可能支持所有支持POSIX的操
+PySerial封装了串口通讯模块，支持Linux、Windows、BSD(可能支持所有支持POSIX的操
 作系统)，支持Jython(Java)和IconPython(.NET and Mono).
 
 在使用PySerial之后，我们只需要
 
 ``` python
-    ser=serial.Serial("/dev/ttyACM0",9600)
-    ser.write("1")
-
+ser=serial.Serial("/dev/ttyACM0",9600)
+ser.write("1")
 ```
 就可以向串口发送一个字符1。
 
@@ -295,12 +292,16 @@ web网站或是web应用程序添加有交互性的图表，并且免费提供�
 
 **D3.js**
 
+
 #本地系统设计#
 ##硬件设计##
 ###Raspberry Pi###
-Raspberry Pi开发板与Arduino开发板，通过USB方口线连接。
-Raspberry Pi可以直接运行Debian GNU/Linux系统，通过网线上网，并从服务器
-中读取数据，同时借由Python语言收发串口数据。
+
+Raspberry Pi开发板在这里主要工作有:
+
+ - 与Arduino开发板，通过USB线连接。
+ - 可以直接运行Debian GNU/Linux系统，通过网线上网，并从服务器中读取数据，
+ - 通过Python语言接收、发送串口数据。
 
 ##软件设计##
 在本地我们需要解决的问题可以如下描述，Arduino开发板从串口一直读取数据，
@@ -328,7 +329,6 @@ raspberrypi:
         end
 ```
 ##Arduino##
-
 
 [arduinouno]: dot/ArduinoUnoSmd.png "Arduino开发板"
 ![Arduino开发板][arduinouno]
@@ -420,12 +420,25 @@ Raspberrypi如下所示的开发板
 [raspi]: dot/raspberrypi.png "Raspberry Pi开发板"
 ![Raspberry Pi开发板][raspi]
 
+```
+        begin
+           repeat
+             json:=get_data(url)
+             if validate(json).success
+               data:=parse（json)
+               if data:==1
+                  serial_send("1")
+                else
+                  serial_send("0")
+              else
+                  output "error"
+           util false
+        end
+```
 Raspberry Pi程序
 
 [image2]: dot/python.png "Python 程序流程图"
 ![Python程序流程图][image2]
-
-
 
 ###获取数据###
 
@@ -479,33 +492,34 @@ pip常用命令有install、uninstall以及search，install顾名思义就是安
 ``` python
     serial.Serial("/dev/ttyACM0",9600)
 ```
+串行接口是一种可以将接受来自CPU的并行数据字符转换为连续的串行数据流发送出去，
+同时可将接受的串行数据流转换为并行的数据字符供给CPU的器件。一般完成这种功能
+的电路，我们称为串行接口电路。
 
 便是打开这个设备，以9600的速率传输数据。
 
 [^windows_com]:在Windows系统上，只需要将/dev/ttyACM0改为对应的com口。
 
-``` python
-import json
-import urllib2
-import serial
-import time
+    import json
+    import urllib2
+    import serial
+    import time
 
-url="http://www.xianuniversity.com/athome/1"
+    url="http://www.xianuniversity.com/athome/1"
 
-while 1:
-    try:
-        date=urllib2.urlopen(url)
-        result=json.load(date)
-        status=result[0]["led1"]
-        ser=serial.Serial("/dev/ttyACM0",9600)
-        if status==1 :
-            ser.write("1")
-        elif status==0:
-            ser.write("0")
-        time.sleep(1)
-    except urllib2.URLError:
-        print "Bad URL or timeout"
-```
+    while 1:
+        try:
+            date=urllib2.urlopen(url)
+            result=json.load(date)
+            status=result[0]["led1"]
+            ser=serial.Serial("/dev/ttyACM0",9600)
+            if status==1 :
+                ser.write("1")
+            elif status==0:
+                ser.write("0")
+            time.sleep(1)
+        except urllib2.URLError:
+            print "Bad URL or timeout"
 
 [getjson]: dot/getjson.png "python返回json数据"
 ![python返回json数据][getjson]
@@ -528,6 +542,9 @@ while 1:
 是基础的HTPP协议。基础的HTTP协议便是:GET、POST、PUT、DELETE。它们分别
 对应四种基本操作：GET用来获取资源，POST用来新建资源（也可以用于更新资
 源），PUT用来更新资源，DELETE用来删除资源。
+
+[restful]: dot/restful.png "restful"
+![restful][restful]
 
 简要的来说，一个GET动作便是在打开一个网页的时候，看到的内容，便是GET到
 的资源。而在获取取到网页的内容之前，会有一个POST动作到所要打开的网站的
@@ -603,9 +620,12 @@ REST服务实际上是充当着网络与设备的传输介质，构建一个REST
 ```
 设计好这样的接口有助于显示在系统的前台，而这也是无法在物联网系统中产生
 统一协议的原因之一，复杂的接口无法用于简单功能的场景。
+
+下面是一个简单的POST请求的示例，系统需要能接收POST请求，并将请求存储到数据库
+
 ``` bash
     POST / HTTP/1.1
-    Host: example.com
+    Host:localhost
     User-Agent: Go 1.1 package http
     Content-Length: 45
     Authorization: 123456
@@ -640,6 +660,11 @@ DELETE动作，便是删除动作了，而这也是一个物联网系统服务�
 
 在Javascript语言中有函数库可以直接用于获取后台数据——getJSON，可以从指定的URL中获取结果。
 
+ - url 用于提供 json 数据的地址页
+ - data(Optional) 用于传送到服务器的键值对
+ - callback(Optional) 回调函数，json 数据请求成功后的处理函数
+
+
 ``` javascript
     var dataLength = [];
     function drawTemp() {
@@ -656,6 +681,17 @@ DELETE动作，便是删除动作了，而这也是一个物联网系统服务�
 实际上，我们做的只是从 /athome/ 下面获取数据，再将数据堆到数组里面，再
 把这部分放到图形中。
 
+ - 兼容性：兼容当今所有的浏览器，包括 iPhone、IE 和火狐等等；
+ - 对个人用户完全免费；
+ - 纯JS，无BS；
+ - 支持大部分的图表类型：直线图，曲线图、区域图、区域曲线图、柱状图、饼装图、散布图；
+ - 跨语言：不管是 PHP、Asp.net 还是 Java 都可以使用，它只需要三个文件：一个是Highcharts
+的核心文件 highcharts.js，还有 a canvas emulator for IE 和 Jquery类库或者 MooTools 类库；
+ - 提示功能：鼠标移动到图表的某一点上有提示信息；
+ - 放大功能：选中图表部分放大，近距离观察图表；
+ - 易用性：无需要特殊的开发技能，只需要设置一下选项就可以制作适合自己的图表；
+ - 时间轴：可以精确到毫秒;
+
 [chart1]: dot/chart.png "温度走势图"
 ![chart][chart1]
 
@@ -663,6 +699,13 @@ DELETE动作，便是删除动作了，而这也是一个物联网系统服务�
 
 系统使用Laravel框架作为系统底层，需要配置其运行环境[^runtime]，创建数
 据库[^createdb]，对应于上面生成的最后的JSON数据，创建对应的数据库:
+
+表名        数据类型
+id          整数
+temperature 浮点数
+sensors1    浮点数
+sensors2    浮点数
+led1        布尔型
 
 ``` php
         public function up()
@@ -681,6 +724,25 @@ DELETE动作，便是删除动作了，而这也是一个物联网系统服务�
 当POST数据的时候，便是将数据存往数据库，而GET的时候则是从数据库中拿出
 数据再渲染给浏览器，GET、PUT、DELETE、POST便是对就于数据库的Create、Refresh、Update、Delete
 
+系统使用MySQL作为数据库，开始的时候需要创建数据库，在数据库中执行
+
+    CREATE DATABASE IF NOT EXISTS iot default charset utf8 COLLATE utf8_general_ci;
+
+以创建athomes这样一个数据库，同时将PHP与数据库配置好
+
+```php
+'mysql' => array(
+  'driver' => 'mysql',
+  'host' => 'localhost',
+  'database' => 'iot',
+  'username' => 'root',
+  'password' => ' ',
+  'charset' => 'utf8',
+  'collation' => 'utf8_unicode_ci',
+  'prefix' => '',
+)
+```
+
 [editjson]: dot/edit.png "控制界面"
 ![控制界面][editjson]
 
@@ -688,6 +750,8 @@ DELETE动作，便是删除动作了，而这也是一个物联网系统服务�
 
 [getpost]: dot/getpost.png "GET POST数据"
 ![GET POST数据][getpost]
+
+系统会先向服务器发送数据，也就是POST请求，在请求结束后，系统将会刷新页面，也就是GET请求。
 
 [^runtime]:这里用的是Linux+Nginx+MySQL+PHP。
 [^createdb]:创建数据的代码:CREATE DATABASE IF NOT EXISTS bbs default charset utf8 COLLATE utf8_general_ci;
