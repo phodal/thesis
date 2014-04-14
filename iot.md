@@ -550,6 +550,9 @@ pip常用命令有install、uninstall以及search，install顾名思义就是安
 的资源。而在获取取到网页的内容之前，会有一个POST动作到所要打开的网站的
 服务器。
 
+[getrequest]: dot/getrequest.png "Get Request"
+![Get Request][getrequest]
+
 ###基本的REST服务###
 
 REST服务实际上是充当着网络与设备的传输介质，构建一个REST服务也就相当于

@@ -23,5 +23,7 @@ img:
 	dot dot/python.dot  -Tpng  -o dot/python.png
 	dot dot/struct.dot  -Tps   -o dot/struct.ps
 	dot dot/struct.dot  -Tpng  -o dot/struct.png
-  dot dot/restful.dot -Tpng  -o dot/restful.png
-  dot dot/restful.dot -Tps   -o dot/restful.ps
+	dot dot/restful.dot -Tpng  -o dot/restful.png
+	dot dot/restful.dot -Tps   -o dot/restful.ps
+	dot dot/getrequest.dot -Tpng  -o dot/getrequest.png
+	dot dot/getrequest.dot -Tps   -o dot/getrequest.ps

@@ -1,0 +1,10 @@
+digraph G{
+  RK=LR;
+  subgraph cluster1{
+    label="GET Request";
+    Browser->Server [label="GET"];
+    Server->Database [label="Refresh"];
+    Database->Server;
+    Server->Browser [label="JSON"];
+  }
+}
