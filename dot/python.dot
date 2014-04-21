@@ -1,3 +1,19 @@
 digraph G{
-
+  node[shape=record];
+  Start ->"init";
+  Start [shape=ellipse];
+  "init"->get_data;
+  subgraph cluster{
+    get_data->parse_data;
+    parse_data->get_result;
+    get_result->serial_write;
+    serial_write->"Serial Send 1"[label="result = 1"]
+    serial_write->"Serial Send 0"[label="result = 0"]
+    "Serial Send 1"->get_data;
+    "Serial Send 0"->get_data;
+    serial_write [shape=diamond,label="1 or 0?"];
+    get_data [label="Get JSON Data"]
+    parse_data [label="Parse JSON Data"]
+    get_result [label="Get Result"]
+  }
 }
