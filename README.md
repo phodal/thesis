@@ -2,11 +2,11 @@
 
 下载: 
 
-[物联网毕业设计 PDF](https://raw.githubusercontent.com/gmszone/thesis/master/iot.pdf)
+[物联网毕业设计 PDF](https://raw.githubusercontent.com/phodal/thesis/master/iot.pdf)
 
-[物联网毕业设计 DOCX](https://raw.githubusercontent.com/gmszone/thesis/master/iot.docx)
+[物联网毕业设计 DOCX](https://raw.githubusercontent.com/phodal/thesis/master/iot.docx)
 
-[物联网毕业设计 PPT](https://raw.githubusercontent.com/gmszone/thesis/master/%E5%9F%BA%E4%BA%8EREST%E6%9C%8D%E5%8A%A1%E7%9A%84%E6%9C%80%E5%B0%8F%E7%89%A9%E8%81%94%E7%BD%91%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1.ppt)
+[物联网毕业设计 PPT](https://raw.githubusercontent.com/phodal/thesis/master/%E5%9F%BA%E4%BA%8EREST%E6%9C%8D%E5%8A%A1%E7%9A%84%E6%9C%80%E5%B0%8F%E7%89%A9%E8%81%94%E7%BD%91%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1.ppt)
 
 ##摘要
 随着经济社会的日趋发展及科学技术水平的不断提高，人们对于便利生活的要求越来越高。近年来，随着物联网领域稳步、缓慢地发展，物联网建设的网络环境已经逐渐成熟。由于物联网系统是一个综合性的，包含了硬件、软件、网络等多学科交叉的系统。对于物联网的研究和开发，已经成为一个个热门的话题。
